@@ -1,0 +1,18 @@
+{
+  "name": "night-watch",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "catch bip webhooks and post to slack if the result code is undesireable",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/web-api": "^6.8.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.1.4",
+    "fastify": "^4.17.0"
+  }
+}

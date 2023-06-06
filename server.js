@@ -78,6 +78,8 @@ fastify.route({
       throw new Error(error)
     }
 
+    console.log(`Got result code: ${objResult.payload.result.code}`)
+
     // eval if code is an undesireable
     undesireables.forEach(async (undesireable) => {
       if (objResult.payload.result.code == undesireable) {

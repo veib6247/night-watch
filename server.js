@@ -90,7 +90,7 @@ fastify.route({
         try {
           const result = await slack.chat.postMessage({
             channel: process.env.SLACK_CHANNEL_ID,
-            text: `:warning: *Detected Undesireable Result Code!* :warning: \n\n*${objResult.payload.result.code}*\n${objResult.payload.result.description}\n\n*ID*\n${objResult.payload.id}\n\n*Entity ID*\n${objResult.payload.authentication.entityId}\n\n\nPlease check the entity for further investigation.`,
+            text: `:warning: *Detected Undesireable Result Code* :warning: \n\n*${objResult.payload.result.code}*\n${objResult.payload.result.description}\n\n*ID*\n${objResult.payload.id}\n\n*Entity ID*\n${objResult.payload.authentication.entityId}\n\n\nPlease check the entity for further investigation.`,
           })
 
           console.log(result)

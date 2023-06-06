@@ -39,7 +39,7 @@ fastify.route({
       '900.200.100', // Message Sequence Number of Connector out of sync
       '900.300.600', // user session timeout
       '900.400.100', // unexpected communication error with external risk provider
-      // '000.100.110', // Request successfully processed in 'Merchant in Integrator Test Mode'
+      '000.100.110', // Request successfully processed in 'Merchant in Integrator Test Mode'
     ]
 
     // attempt to decrypt data

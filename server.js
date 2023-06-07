@@ -21,6 +21,7 @@ fastify.route({
   handler: async (request, reply) => {
     let objResult = ''
     const undesireables = [
+      // Result codes for rejections due to communication errors
       '100.390.111', // Communication Error to Scheme Directory Server
       '000.400.030', // Transaction partially failed (please reverse manually due to failed automatic reversal)
       '900.100.100', // unexpected communication error with connector/acquirer
@@ -39,6 +40,19 @@ fastify.route({
       '900.200.100', // Message Sequence Number of Connector out of sync
       '900.300.600', // user session timeout
       '900.400.100', // unexpected communication error with external risk provider
+
+      // Result codes for rejections due to system errors
+      '600.100.100', // Unexpected Integrator Error (Request could not be processed)
+      '800.500.100', // direct debit transaction declined for unknown reason
+      '800.500.110', // Unable to process transaction - ran out of terminalIds - please contact acquirer
+      '800.600.100', // transaction is being already processed
+      '800.800.400', // Connector/acquirer system is under maintenance
+      '800.800.800', // The payment system is currenty unavailable, please contact support in case this happens again.
+      '800.800.801', // The payment system is currenty unter maintenance. Please apologize for the inconvenience this may cause. If you were not informed of this maintenance window in advance, contact your sales representative.
+      '999.999.888', // UNDEFINED PLATFORM DATABASE ERROR
+      '999.999.999', // UNDEFINED CONNECTOR/ACQUIRER ERROR
+
+      // for testing purposes
       // '000.100.110', // Request successfully processed in 'Merchant in Integrator Test Mode'
     ]
 
@@ -74,8 +88,6 @@ fastify.route({
     } catch (error) {
       reply.code(500)
       reply.send({ msg: 'Decryption failed' })
-
-      throw new Error(error)
     }
 
     console.log(`Got result code: ${objResult.payload.result.code}`)
